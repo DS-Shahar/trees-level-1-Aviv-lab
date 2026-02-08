@@ -31,11 +31,13 @@ public class BinNode_Homework
         //System.out.println(lst);
         t1.display();
         tree.display();
-		System.out.println(treeHeight(tree));
-		System.out.println(isBalanced(tree));
-		System.out.println(leafCount(tree));
-		System.out.println(allIsIn(tree, t14));
         System.out.println(sequentialTreeN(t1, 3));
+		System.out.println(isBalanced(tree));
+        System.out.println(isBalancedBoys(tree));
+        System.out.println(maxValue(tree));
+        System.out.println(minValue(tree));
+        System.out.println(perfectTree(t1));
+        System.out.println(treeHeight(tree));
 	}
 
 	/* Construct from in-order with brackets */
@@ -467,4 +469,31 @@ public class BinNode_Homework
 		return true;	
 	}
 
+    public static boolean perfectTree(BinNode<Integer> t)
+    {
+       return leafCount(t)==Math.pow(2,treeHeight(t));
+    }
+
+    public static int maxValue(BinNode<Integer> t)
+    {
+        if (t==null)
+            return Integer.MIN_VALUE;
+        return Math.max(t.getValue(), Math.max(maxValue(t.getLeft()), maxValue(t.getRight())));
+    }
+
+    public static int minValue(BinNode<Integer> t)
+    {
+        if (t==null)
+            return Integer.MAX_VALUE;
+        return Math.min(t.getValue(), Math.min(minValue(t.getLeft()), minValue(t.getRight())));
+    }
+
+    public static boolean isBalancedBoys(BinNode<Integer> t)
+    {
+        if (t==null)
+            return true;
+        if ((t.hasLeft()&&!t.hasRight())||(!t.hasLeft()&&t.hasRight()))
+            return false;
+        return isBalancedBoys(t.getLeft())&&isBalancedBoys(t.getRight());
+    }
 }
