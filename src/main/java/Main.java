@@ -492,7 +492,7 @@ public class BinNode_Homework
     {
         if (t==null)
             return true;
-        if ((t.hasLeft()&&!t.hasRight())||(!t.hasLeft()&&t.hasRight()))
+        if ((t.hasLeft()!=t.hasRight()))
             return false;
         return isBalancedBoys(t.getLeft())&&isBalancedBoys(t.getRight());
     }
